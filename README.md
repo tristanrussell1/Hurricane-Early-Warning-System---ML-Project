@@ -37,7 +37,7 @@ Engineered multiple features to improve model performance, notably time window s
 - Raw differences for 1, 3, and 5 days prior values
 - Joint feature combinations (eg Temp * Humidity)
 
-[Fully Engineered Data](https://gtvault-my.sharepoint.com/:x:/r/personal/trussell47_gatech_edu/_layouts/15/Doc.aspx?sourcedoc=%7B5A7A585E-1F8B-4119-94F0-80A924E16673%7D&file=Completed_Hurricane_Data.csv&action=default&mobileredirect=true)
+[Full Data + Engineered Features](https://gtvault-my.sharepoint.com/:x:/g/personal/trussell47_gatech_edu/IQCBwVK3Kc6ITJdcoLLNtVUdAdkELE4MgQBGiDtoN8wWLfg)
 
 ---
 
