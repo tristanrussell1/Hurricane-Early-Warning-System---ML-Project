@@ -12,11 +12,13 @@ Final results demonstrate strong discriminatory performance (**ROC AUC: 0.818**)
 [NASA POWER API](https://power.larc.nasa.gov/data-access-viewer/):
 - Daily geospatial data for 15 locations since the year 2001
 - 18 features captured (meteorological, atmospheric, climatological)
+  
 [Full Data Pull](https://gtvault-my.sharepoint.com/:x:/g/personal/trussell47_gatech_edu/IQCBwVK3Kc6ITJdcoLLNtVUdAdkELE4MgQBGiDtoN8wWLfg?e=y6wYcN)
 
 [NHC Hurricane Track](https://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2024-040425.txt):
 - Storm tracks for all Atlantic hurricanes by latitude, longitude, and storm severity
 - Between 2-4 location flags per day for each storm
+  
 [Full Data](https://gtvault-my.sharepoint.com/:x:/g/personal/trussell47_gatech_edu/IQBIUh5o6EPQRLeLFedhrzAlAVtnlHe2lnMAAOlhp-M4_uE?e=LRbCrT)
 
 Data Merging & Construction:
@@ -41,7 +43,7 @@ Engineered multiple features to improve model performance, notably time window s
 - Raw differences for 1, 3, and 5 days prior values
 - Joint feature combinations (eg Temp * Humidity)
 
-[Full Data + Engineered Features](https://gtvault-my.sharepoint.com/:x:/g/personal/trussell47_gatech_edu/IQCMDzUGtS-4SbiUsBj7GSQ-ATEbwtBdhgKjk1pNg-OhD8k?e=JiZ02n)
+[Full Data + Engineered Features](https://gtvault-my.sharepoint.com/:x:/g/personal/trussell47_gatech_edu/IQCMDzUGtS-4SbiUsBj7GSQ-AQdfW0meucUZlSe__v8mNI4?e=dof16H)
 
 ---
 
