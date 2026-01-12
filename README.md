@@ -3,7 +3,7 @@
 ## Project Overview
 This project develops a machine-learning based early-warning system to flag potential hurricane formation events **3–5 days in advance** using historical meteorological data from the National Aeronautics and Space Administration (NASA) POWER API in conjunction with hurricane track data from the National Hurricane Center (NHC) over the past 25 years. Utilizing data from 15 geographic locations dispersed throughout the Hurricane Major Development Region (MDR) in the Atlantic Ocean and Caribbean Sea (10–20°N, 20–80°W), the task is challenging due to a **long prediction horizon** and **severe class imbalance (~6% positive class)**. The model is intentionally designed as a **triage system**, prioritizing recall of storm events to minimize missed formations while reducing unnecessary monitoring workload.
 
-Final results demonstrate strong discriminatory performance (**ROC AUC: 0.813**) while capturing **90% of storm formation events**, making the model suitable for early-warning and prioritization use cases.
+Final results demonstrate strong discriminatory performance (**ROC AUC: 0.818**) while capturing **90% of storm formation events**, making the model suitable for early-warning and prioritization use cases.
 
 ---
 
@@ -12,10 +12,12 @@ Final results demonstrate strong discriminatory performance (**ROC AUC: 0.813**)
 [NASA POWER API](https://power.larc.nasa.gov/data-access-viewer/):
 - Daily geospatial data for 15 locations since the year 2001
 - 18 features captured (meteorological, atmospheric, climatological)
+[Full Data Pull](https://gtvault-my.sharepoint.com/:x:/g/personal/trussell47_gatech_edu/IQCBwVK3Kc6ITJdcoLLNtVUdAdkELE4MgQBGiDtoN8wWLfg?e=y6wYcN)
 
 [NHC Hurricane Track](https://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2024-040425.txt):
 - Storm tracks for all Atlantic hurricanes by latitude, longitude, and storm severity
 - Between 2-4 location flags per day for each storm
+[Full Data](https://gtvault-my.sharepoint.com/:x:/g/personal/trussell47_gatech_edu/IQBIUh5o6EPQRLeLFedhrzAlAVtnlHe2lnMAAOlhp-M4_uE?e=LRbCrT)
 
 Data Merging & Construction:
 - Utilized haversine distance between selected locations and hurricane paths to indicate hurricane presence and distance on active days
@@ -23,6 +25,8 @@ Data Merging & Construction:
 - Created binary indicators for multiple distance thresholds (100, 250, 500, and 750 miles) to indicate storm presence in a location
   - Target variable indicator added to points 3-5 days before true storm presence
   - Added indicators to drop active storm days in model testing to avoid target leakage into model training
+  - Added indicators to drop preceding 1st and 2nd day before storm in model testing to avoid target leakage into model training
+  - Added indicators to drop 1st and 2nd day after storm in model testing to avoid weaking model predictive strength (conditions 1-2 days after storm likely to be similar to 1-2 days before which were also removed)
 
 Key data characteristic: Highly imbalanced target distribution (~6% positive class for largest distance threshold due to storm rarity)
 
@@ -37,7 +41,7 @@ Engineered multiple features to improve model performance, notably time window s
 - Raw differences for 1, 3, and 5 days prior values
 - Joint feature combinations (eg Temp * Humidity)
 
-[Full Data + Engineered Features](https://gtvault-my.sharepoint.com/:x:/g/personal/trussell47_gatech_edu/IQCBwVK3Kc6ITJdcoLLNtVUdAdkELE4MgQBGiDtoN8wWLfg)
+[Full Data + Engineered Features](https://gtvault-my.sharepoint.com/:x:/g/personal/trussell47_gatech_edu/IQCMDzUGtS-4SbiUsBj7GSQ-ATEbwtBdhgKjk1pNg-OhD8k?e=JiZ02n)
 
 ---
 
@@ -66,8 +70,8 @@ Opted not to use accuracy as a primary metric due to class imbalance and asymmet
 ## Results
 - **Storm Recall:** 0.90  
 - **Precision:** 0.11  
-- **ROC AUC:** 0.813  
-- **Monitoring Reduction:** ~55% of locations filtered out  
+- **ROC AUC:** 0.818
+- **Monitoring Reduction:** ~56% of locations filtered out  
 
 These results reflect an intentionally cautious model optimized to minimize missed storm formation events while reducing monitoring space by over half.
 
@@ -85,9 +89,9 @@ eature importance analysis highlights these factors as key indicators to the mod
 ---
 
 ## Use Case, Impact, & Limitations
-This model would be able to serve as an **early-stage flagging system** for weather monitoring agencies. It successfully eliminates 55% of locations from needing further monitoring, while capturing 90% of all early formation events. The model allows higher-risk flags to be further investigated and resources to be allocated to monitor these locations, serving as an effective triage model and more than halving the monitoring workload. The significantly more costly effects of a false negative flag versus a false positive guided threshold adjustments for storm activity flagging. A 0.90 recall on the positive class with 0.11 precision highlights that this is an inherently cautious model. In this context, false positives represent additional monitoring cost, while false negatives represent missed early-warning opportunities.
+This model would be able to serve as an **early-stage flagging system** for weather monitoring agencies. It successfully eliminates 56% of locations from needing further monitoring, while capturing 90% of all early formation events. The model allows higher-risk flags to be further investigated and resources to be allocated to monitor these locations, serving as an effective triage model and more than halving the monitoring workload. The significantly more costly effects of a false negative flag versus a false positive guided threshold adjustments for storm activity flagging. A 0.90 recall on the positive class with 0.11 precision highlights that this is an inherently cautious model. In this context, false positives represent additional monitoring cost, while false negatives represent missed early-warning opportunities.
 
-The substantial 3–5 day prediction window before storm events posed challenges in model training, and severe class imbalance (6% positive class) limited the model’s false positive rate (89%) from being lower. Despite these constraints, the model demonstrates strong discriminatory performance (ROC AUC: 0.813), indicating reliable ranking of high-risk versus low-risk locations, making it suitable for prioritization and early-warning use cases where minimizing missed events is critical.
+The substantial 3–5 day prediction window before storm events posed challenges in model training, and severe class imbalance (6% positive class) limited the model’s false positive rate (89%) from being lower. Despite these constraints, the model demonstrates strong discriminatory performance (ROC AUC: 0.818), indicating reliable ranking of high-risk versus low-risk locations, making it suitable for prioritization and early-warning use cases where minimizing missed events is critical.
 
 ---
 
