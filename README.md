@@ -28,7 +28,7 @@ Data Merging & Construction:
   - Target variable indicator added to points 3-5 days before true storm presence
   - Added indicators to drop active storm days in model testing to avoid target leakage into model training
   - Added indicators to drop preceding 1st and 2nd day before storm in model testing to avoid target leakage into model training
-  - Added indicators to drop 1st and 2nd day after storm in model testing to avoid weaking model predictive strength (conditions 1-2 days after storm likely to be similar to 1-2 days before which were also removed)
+  - Added indicators to drop 1st and 2nd day after storm in model testing to avoid weakening model predictive strength (conditions 1-2 days after storm likely to be similar to 1-2 days before which were also removed)
 
 Key data characteristic: Highly imbalanced target distribution (~6% positive class for largest distance threshold due to storm rarity)
 
